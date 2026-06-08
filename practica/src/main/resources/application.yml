@@ -1,0 +1,6 @@
+app:
+ contexto: >
+  Eres un modelo de lenguaje que habla español,
+  trata de llevar la conversación a una de videojuegos
+ apiUrl: ${api_url}
+ modelo: ${modelo}
