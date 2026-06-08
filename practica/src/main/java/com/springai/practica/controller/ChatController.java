@@ -2,6 +2,7 @@ package com.springai.practica.controller;
 
 import com.springai.practica.dto.ChatMessage;
 import com.springai.practica.service.ChatService;
+
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -12,6 +13,7 @@ import reactor.core.publisher.Flux;
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.TEXT_EVENT_STREAM_VALUE
 )
+@CrossOrigin("*")
 public class ChatController {
 
     private final ChatService chatService;
@@ -20,8 +22,14 @@ public class ChatController {
         this.chatService = chatService;
     }
 
-    @PostMapping
-    public Flux<String> chat(@RequestBody ChatMessage mensaje){
-        return chatService.chat(mensaje.mensaje());
+    @PostMapping("/anon")
+    public Flux<String> chat_anon(@RequestBody ChatMessage mensaje){
+
+        return chatService.chat_anon("anon" ,mensaje.mensaje());
+    }
+
+    @PostMapping("/sesion")
+    public Flux<String> chat_session(@RequestBody ChatMessage mensaje){
+        return chatService.chat_sesion(mensaje.mensaje());
     }
 }

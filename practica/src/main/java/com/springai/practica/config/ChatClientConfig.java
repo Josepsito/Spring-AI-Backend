@@ -27,7 +27,7 @@ public class ChatClientConfig {
     @Bean
     public ChatMemory chatMemory() {
         return MessageWindowChatMemory.builder()
-                .maxMessages(20)
+                .maxMessages(30)
                 .build();
     }
 
